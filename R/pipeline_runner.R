@@ -297,7 +297,11 @@ scRNAseq_pipeline_runner <- function(  datadir,
   
   
   #locate the pipeline file
-  rmdfile <- system.file("rmd", "scRNAseq_clustering_integration.Rmd", package = "scDAPP")
+  rmdfile_src <- system.file("rmd", "scRNAseq_clustering_integration.Rmd", package = "scDAPP")
+  rmdfile <- file.path(outdir, basename(rmdfile_src))
+
+  # Copy the file
+  file.copy(from = rmdfile_src, to = rmdfile, overwrite = TRUE)
   
   message('Will run rmd file at:\n',
           rmdfile,
